@@ -15,7 +15,15 @@ public class Project {
      */
     public static void main(String[] args) {
         
+//        Payments p1 = new Payments();
+//        Payments p2 = new Payments();
+//        System.out.println(p1.toString());
+//        System.out.println(p2.toString());
+        Regular r1 = new Regular();
+        r1.setUnlimitedAccess(true);
+        
         
     }
+    
     
 }
