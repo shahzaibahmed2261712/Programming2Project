@@ -8,9 +8,6 @@ package project;
  *
  * @author ahmed
  */
-public class Member {
-    
-    
-    
+public class boooaf {
     
 }
