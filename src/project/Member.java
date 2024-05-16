@@ -5,16 +5,17 @@
 package project;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 /**
  *
  * @author ahmed
  */
 public class Member {
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String phoneNumber;
+    protected String firstName;
+    protected String lastName;
+    protected String address;
+    protected String phoneNumber;
 
     public Member() {
         firstName = null;
@@ -59,7 +60,33 @@ public class Member {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        for (int i = 0; i < phoneNumber.length(); i++) {
+            if (i != 3 && i != 7 && !Character.isDigit(phoneNumber.charAt(i))) {
+                System.out.println("Not Valid Format, Only Numbers");
+
+                Scanner input = new Scanner(System.in);
+                System.out.print("New Member phone number: ");
+                phoneNumber = input.nextLine();
+            }
+        }
+
+        if (phoneNumber.charAt(3) != '-') {
+            System.out.println("Not Valid Format, Missing '-'");
+
+            Scanner input = new Scanner(System.in);
+            System.out.print("New Member phone number: ");
+            phoneNumber = input.nextLine();
+        } else if (phoneNumber.charAt(7) != '-') {
+            System.out.println("Not Valid Format, Missing '-'");
+            Scanner input = new Scanner(System.in);
+            System.out.print("New Member phone number: ");
+            phoneNumber = input.nextLine();
+        } else if (phoneNumber.length() != 12) {
+            System.out.println("Not Valid Format, Follow the format (XXX-XXX-XXXX)");
+            Scanner input = new Scanner(System.in);
+            System.out.print("New Member phone number: ");
+            phoneNumber = input.nextLine();
+        }
     }
 
     @Override

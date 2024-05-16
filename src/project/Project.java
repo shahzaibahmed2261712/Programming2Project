@@ -4,6 +4,8 @@
  */
 package project;
 
+import java.util.Scanner;
+
 /**
  *
  * @author ahmed
@@ -14,16 +16,44 @@ public class Project {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-//        Payments p1 = new Payments();
-//        Payments p2 = new Payments();
-//        System.out.println(p1.toString());
-//        System.out.println(p2.toString());
-        Regular r1 = new Regular();
-        r1.setUnlimitedAccess(true);
-        
+        //employeeLogin();
+        addMember();
         
     }
+    
+    public static Employee employeeLogin(){
+        Employee ep = new Employee();
+        Scanner input = new Scanner(System.in);
+        System.out.print("Employee Login\nUsername: ");
+        ep.username = input.nextLine();
+        System.out.print("Password: ");
+        ep.password = input.nextLine();
+        
+        System.out.println();
+        
+        return ep;
+    }
+    
+    public static Member addMember() {
+        Member m = new Member();
+        
+        Scanner input = new Scanner(System.in);
+        System.out.print("New Member's first name: ");
+        m.setFirstName(input.nextLine());
+        System.out.print("New Member's last name: ");
+        m.setLastName(input.nextLine());
+        System.out.print("New Member's address: ");
+        m.setAddress(input.nextLine());
+        System.out.print("New Member phone number: ");
+        m.setPhoneNumber(input.nextLine());
+        
+        return m;
+    }
+//    
+//    public static Membership chooseMembership(Member newMember){
+//        Scanner input = new Scanner(System.in);
+//        
+//    }
     
     
 }
