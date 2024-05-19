@@ -12,18 +12,21 @@ public class Premium extends Membership{
     private boolean anyLocationAccess;
     private boolean twentyfivePercentDiscountOnFood;
     private boolean accessToSpa;
+    protected double price;
 
     public Premium() {
         anyLocationAccess = true;
         twentyfivePercentDiscountOnFood = true;
         accessToSpa = true;
+        price = 0.0;
     }
 
-    public Premium(boolean anyLocationAccess, boolean twentyfivePercentDiscountOnFood, boolean accessToSpa, String membershipCardNum, double price, String status, String firstName, String lastName, String address, String phoneNumber) {
-        super(membershipCardNum, price, status, firstName, lastName, address, phoneNumber);
+    public Premium(boolean anyLocationAccess, boolean twentyfivePercentDiscountOnFood, boolean accessToSpa, double price, int membershipCardNum, String status, String firstName, String lastName, String address, String phoneNumber) {
+        super(membershipCardNum, status, firstName, lastName, address, phoneNumber);
         this.anyLocationAccess = anyLocationAccess;
         this.twentyfivePercentDiscountOnFood = twentyfivePercentDiscountOnFood;
         this.accessToSpa = accessToSpa;
+        this.price = price;
     }
 
     public boolean isAnyLocationAccess() {
@@ -36,6 +39,25 @@ public class Premium extends Membership{
 
     public boolean isAccessToSpa() {
         return accessToSpa;
+    }
+    
+    @Override
+    public int getMembershipCardNum() {
+        return membershipCardNum;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getStatus() {
+        return status;
+    }
+
+    @Override
+    public void setMembershipCardNum() {
+        this.membershipCardNum = (int) (Math.random() * (749999999 - 640000000 + 1) + 640000000);
     }
 
     public void setAnyLocationAccess(boolean anyLocationAccess) {
@@ -66,23 +88,19 @@ public class Premium extends Membership{
     }
 
     @Override
-    public void setPrice(double price) {
-        price = 37.98;
+    public void setPrice() {
+        this.price = 37.98;
     }
 
     @Override
-    public void setStatus(String status) {
-        status = "Premium Membership";
+    public void setStatus() {
+        this.status = "Premium Membership";
     }
 
     @Override
     public String toString() {
-        return "Member: " + getMembershipCardNum() + " " + getLastName() + ", " + getFirstName() + " " + getStatus();
+        super.toString();
+        return "Member: " + getMembershipCardNum() + " " + getLastName() + ", " + getFirstName() + " " + getStatus() + " " + price;
     }
     
-
-
-
-
-
 }

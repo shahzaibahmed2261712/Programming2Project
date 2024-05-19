@@ -12,20 +12,25 @@ public class Regular extends Membership{
     private boolean unlimitedAccess;
     private boolean aFreeGymShirt;
     private boolean accessToLockers;
+    protected double price;
 
     public Regular() {
         super();
         unlimitedAccess = true;
         aFreeGymShirt = true;
         accessToLockers = true;
+        price = 0.0;
     }
 
-    public Regular(boolean unlimitedAccess, boolean aFreeGymShirt, boolean accessToLockers) {
-        //super(membershipCardNum, price, status, firstName, lastName, address, phoneNumber);
+    public Regular(boolean unlimitedAccess, boolean aFreeGymShirt, boolean accessToLockers, double price, int membershipCardNum,String status, String firstName, String lastName, String address, String phoneNumber) {
+        super(membershipCardNum, status, firstName, lastName, address, phoneNumber);
         this.unlimitedAccess = unlimitedAccess;
         this.aFreeGymShirt = aFreeGymShirt;
         this.accessToLockers = accessToLockers;
+        this.price = price;
     }
+
+    
 
     public boolean isUnlimitedAccess() {
         return unlimitedAccess;
@@ -40,11 +45,10 @@ public class Regular extends Membership{
     }
 
     @Override
-    public String getMembershipCardNum() {
+    public int getMembershipCardNum() {
         return membershipCardNum;
     }
 
-    @Override
     public double getPrice() {
         return price;
     }
@@ -52,6 +56,11 @@ public class Regular extends Membership{
     @Override
     public String getStatus() {
         return status;
+    }
+    
+    @Override
+    public void setMembershipCardNum() {
+        this.membershipCardNum = (int) (Math.random() * (549999999 - 440000000 + 1) + 440000000);
     }
 
     public void setUnlimitedAccess(boolean unlimitedAccess) {
@@ -82,23 +91,38 @@ public class Regular extends Membership{
     }
 
     @Override
-    public void setMembershipCardNum(String membershipCardNum) {
-        this.membershipCardNum = membershipCardNum;
+    public String getFirstName() {
+        return firstName;
     }
 
     @Override
-    public void setPrice(double price) {
-        price = 18.99;
+    public String getLastName() {
+        return lastName;
     }
 
     @Override
-    public void setStatus(String status) {
-        status = "Regular Membership";
+    public String getAddress() {
+        return address;
+    }
+
+    @Override
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    @Override
+    public void setPrice() {
+        this.price = 18.99;
+    }
+
+    @Override
+    public void setStatus() {
+        this.status = "Regular Membership";
     }
 
     @Override
     public String toString() {
-        return "Membership: " + getMembershipCardNum() + " " + getLastName() + ", " + getFirstName() + " " + getStatus();
+        return "Membership: " + getMembershipCardNum() + " | " + getLastName() + ", " + getFirstName() + " | " + getStatus() + " | " + getPrice();
     }
     
 

@@ -60,6 +60,8 @@ public class Member {
     }
 
     public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        
         for (int i = 0; i < phoneNumber.length(); i++) {
             if (i != 3 && i != 7 && !Character.isDigit(phoneNumber.charAt(i))) {
                 System.out.println("Not Valid Format, Only Numbers");

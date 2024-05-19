@@ -4,6 +4,7 @@
  */
 package project;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -17,8 +18,9 @@ public class Project {
      */
     public static void main(String[] args) {
         //employeeLogin();
-        addMember();
-        
+        Member m1 = addMember();
+        System.out.println(m1.toString());
+        chooseMembership(m1);
     }
     
     public static Employee employeeLogin(){
@@ -49,11 +51,47 @@ public class Project {
         
         return m;
     }
-//    
-//    public static Membership chooseMembership(Member newMember){
-//        Scanner input = new Scanner(System.in);
-//        
-//    }
     
+    public static Member chooseMembership(Member newMember){
+        Regular r = new Regular();
+        Premium p = new Premium();
+        
+        
+        Scanner input = new Scanner(System.in);
+        System.out.print("\nWhich Membership does the member want?\nRegular or Premium\nPress r for regular or p for premium: ");
+        char inputMembership = input.next().charAt(0);
+        System.out.println();
+        
+        if(inputMembership == 'r' || inputMembership == 'R'){
+            r.setMembershipCardNum();
+            System.out.println(r.getMembershipCardNum());
+            r.setUnlimitedAccess(true);
+            r.setAccessToLockers(true);
+            r.setaFreeGymShirt(true);
+            r.setLastName(newMember.lastName);
+            r.setFirstName(newMember.firstName);
+            r.setStatus();
+            r.setPrice();
+            System.out.println(r);
+            
+        }
+        else if (inputMembership == 'p' || inputMembership == 'P'){
+            p.setMembershipCardNum();
+            p.setAnyLocationAccess(true);
+            p.setAnyLocationAccess(true);
+            p.setTwentyfivePercentDiscountOnFood(true);
+            p.setLastName(newMember.lastName);
+            p.setFirstName(newMember.getFirstName());
+            p.setStatus();
+            p.setPrice();
+            System.out.println(p);
+            
+        }
+        return newMember;
+    }
     
+    public static void payment(Member newMember){
+        Scanner input = new Scanner(System.in);
+        
+    }
 }

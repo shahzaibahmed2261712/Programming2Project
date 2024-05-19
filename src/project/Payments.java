@@ -10,7 +10,7 @@ import java.util.Objects;
  *
  * @author ahmed
  */
-public class Payments extends Membership{
+public class Payments{
     private static int billNumber = 0;
     protected double cashAmount;
     protected double creditCardAmount;
@@ -22,20 +22,13 @@ public class Payments extends Membership{
         billNumber++;
     }
 
-    public Payments(double cashAmount, double balance, String membershipCardNum, double price, String status, String firstName, String lastName, String address, String phoneNumber) {
-        super(membershipCardNum, price, status, firstName, lastName, address, phoneNumber);
-        billNumber++;
+    public Payments(double cashAmount, double creditCardAmount, String creditCardNumber, double balance) {
         this.cashAmount = cashAmount;
-        this.balance = balance;
-    }
-
-    public Payments(double creditCardAmount, String creditCardNumber, double balance, String membershipCardNum, double price, String status, String firstName, String lastName, String address, String phoneNumber) {
-        super(membershipCardNum, price, status, firstName, lastName, address, phoneNumber);
-        billNumber++;
         this.creditCardAmount = creditCardAmount;
         this.creditCardNumber = creditCardNumber;
         this.balance = balance;
     }
+
 
     public int getBillNumber() {
         return billNumber;
@@ -115,16 +108,4 @@ public class Payments extends Membership{
     public String toString() {
         return "Payments: " + getBillNumber();
     }
-
-    @Override
-    public void setPrice(double price) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void setStatus(String status) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    
 }

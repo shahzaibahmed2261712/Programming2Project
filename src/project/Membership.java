@@ -11,50 +11,62 @@ import java.util.Objects;
  * @author ahmed
  */
 public abstract class Membership extends Member{
-    protected String membershipCardNum;
-    protected double price;
+    protected int membershipCardNum;
     protected String status;
 
     
     public Membership() {
         super();
-        membershipCardNum = null;
-        price = 0.0;
+        membershipCardNum = 0;
         status = null;
     }
 
-    public Membership(String membershipCardNum, double price, String status, String firstName, String lastName, String address, String phoneNumber) {
+    public Membership(int membershipCardNum, String status, String firstName, String lastName, String address, String phoneNumber) {
         super(firstName, lastName, address, phoneNumber);
         this.membershipCardNum = membershipCardNum;
-        this.price = price;
         this.status = status;
     }
 
-    public String getMembershipCardNum() {
-        return membershipCardNum;
+    @Override
+    public String getFirstName() {
+        return firstName;
     }
 
-    public double getPrice() {
-        return price;
+    @Override
+    public String getLastName() {
+        return lastName;
+    }
+
+    @Override
+    public String getAddress() {
+        return address;
+    }
+
+    @Override
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public int getMembershipCardNum() {
+        return membershipCardNum;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void setMembershipCardNum(String membershipCardNum) {
-        this.membershipCardNum = membershipCardNum;
-    }
+    public abstract void setMembershipCardNum();
+        
+    
 
-    public abstract void setPrice(double price);
+    public abstract void setPrice();
 
-    public abstract void setStatus(String status);
+    public abstract void setStatus();
 
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 13 * hash + Objects.hashCode(this.membershipCardNum);
-        hash = 13 * hash + (int) (Double.doubleToLongBits(this.price) ^ (Double.doubleToLongBits(this.price) >>> 32));
         hash = 13 * hash + Objects.hashCode(this.status);
         return hash;
     }
@@ -71,9 +83,6 @@ public abstract class Membership extends Member{
             return false;
         }
         final Membership other = (Membership) obj;
-        if (Double.doubleToLongBits(this.price) != Double.doubleToLongBits(other.price)) {
-            return false;
-        }
         if (!Objects.equals(this.membershipCardNum, other.membershipCardNum)) {
             return false;
         }
@@ -82,7 +91,8 @@ public abstract class Membership extends Member{
 
     @Override
     public String toString() {
-        return "Membership: " + membershipCardNum + " " + super.getLastName() + ", " + super.getFirstName()+ " " + status + " " + price;
+        super.toString();
+        return "Memb: " + membershipCardNum + " " + super.getLastName() + ", " + super.getFirstName()+ " " + status;
     }
     
 }
