@@ -4,6 +4,10 @@
  */
 package project;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,21 +21,28 @@ public class Project {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //employeeLogin();
-//        Member m1 = addMember();
-//        System.out.println(m1.toString());
-//        chooseMembership(m1);
-//        System.out.println();
-//        
-//        Regular r = regularMembership(m1);
-//        Premium p = premiumMembership(m1);
-//        Payments pay = payment(m1);
-//        Member[] clientInfo = client(m1,r,p,pay);
-        
-        //retrieveClient(m1);
-        runProgram();
+        Member m1 = runProgram();
     }
-    
+
+    public static Member runProgram() {
+        ArrayList<Member> members = new ArrayList<>();
+        
+        employeeLogin();
+        Member m = addMember();
+        addMembersToList(m, members);
+        
+        //Member chooses membership then member gets stored in an array with their info.
+        String[] clientInfo = client(m);
+        readArray(clientInfo);
+        
+        //Serialzation
+        serializeMember(clientInfo,"C:\\Users\\ahmed\\OneDrive\\Documents\\NetBeansProjects\\Project\\random.ser");
+        String[] member = deserializeMember("C:\\Users\\ahmed\\OneDrive\\Documents\\NetBeansProjects\\Project\\random.ser");
+        readArray(member);
+        
+        return m;
+    }
+
     public static Employee employeeLogin(){
         Employee ep = new Employee();
         Scanner input = new Scanner(System.in);
@@ -58,24 +69,39 @@ public class Project {
         System.out.print("New Member phone number: ");
         m.setPhoneNumber(input.nextLine());
         
-        chooseMembership(m);
+        //chooseMembership(m);
         
         return m;
     }
     
-    public static void chooseMembership(Member newMember){
+    public static String[] client(Member m){
+        String[] clientInfo = new String[0];
         Scanner input = new Scanner(System.in);
         System.out.print("\nWhich Membership does the member want?\nRegular or Premium\nPress r for regular or p for premium: ");
         char inputMembership = input.next().charAt(0);
         System.out.println();
         
         if(inputMembership == 'r' || inputMembership == 'R'){
-            regularMembership(newMember);
+            Regular r = regularMembership(m);
+            Payments pay = payment(m);
             
+            if(pay.creditCardNumber == null)
+                clientInfo = new String[]{m.toString(), r.toString(), pay.toString1()};
+            else if(pay.creditCardNumber != null){
+                clientInfo = new String[]{m.toString(), r.toString(), pay.toString2()};
+            }
         }
         else if (inputMembership == 'p' || inputMembership == 'P'){
-            premiumMembership(newMember);
+            Premium p = premiumMembership(m);
+            Payments pay = payment(m);
+            
+            if(pay.creditCardNumber == null)
+                clientInfo = new String[]{m.toString(), p.toString(), pay.toString1()};
+            else if(pay.creditCardNumber != null){
+                clientInfo = new String[]{m.toString(), p.toString(), pay.toString2()};
+            }
         }
+        return clientInfo;
     }
     
     public static Regular regularMembership(Member newMember) {
@@ -91,7 +117,7 @@ public class Project {
         r.setPrice();
         System.out.println(r);
         
-        payment(newMember);
+        //payment(newMember);
 
         return r;
     }
@@ -109,70 +135,124 @@ public class Project {
         p.setPrice();
         System.out.println(p);
         
-        payment(newMember);
+        //payment(newMember);
         
         return p;
     }
     
-    public static Payments payment(Member newMember){
+    public static Payments payment(Member newMember) {
         Scanner input = new Scanner(System.in);
         Payments pay = new Payments();
-        
+
         System.out.println("\nWhich payment method to pay? Cash or Credit Card?\nPress c for Cash and e for Credit Card.");
         char inputPayMethod = input.next().charAt(0);
         System.out.println();
-        
-        if(inputPayMethod == 'c'){
-            System.out.println("Enter the amount to be paid: ");
-            pay.setBalance(input.nextDouble());
-            pay.getBalance();
-            pay.getBillNumber();
-            pay.setLastName(newMember.getLastName());
-            pay.setFirstName(newMember.getFirstName());
-            pay.setAddress(newMember.getAddress());
-            
-            System.out.println(pay.toString1());
-        }
-        else if(inputPayMethod == 'e'){
-            System.out.println("Enter Credit Card Number in format (XXXX-XXXX-XXXX-XXXX): ");
-            pay.setCreditCardNumber(input.next());
-            System.out.println("Enter the amount to be paid: ");
-            pay.setBalance(input.nextDouble());
-            pay.getBalance();
-            pay.getBillNumber();
-            pay.getCreditCardNumber();
-            pay.setLastName(newMember.getLastName());
-            pay.setFirstName(newMember.getFirstName());
-            pay.setAddress(newMember.getAddress());
-            
-            System.out.println(pay.toString2());
+
+        if (inputPayMethod == 'c') {
+            try {
+                System.out.println("Enter the amount to be paid: ");
+                double balance = input.nextDouble();
+                if (balance < 0) {
+                    throw new NegativeNumberException();
+                }
+                pay.setBalance(balance);
+                pay.getBalance();
+                pay.getBillNumber();
+                pay.setLastName(newMember.getLastName());
+                pay.setFirstName(newMember.getFirstName());
+                pay.setAddress(newMember.getAddress());
+
+                System.out.println(pay.toString1());
+            } catch (NegativeNumberException nme) {
+                System.out.println("Cannot be a negative balance.");
+            }
+        } else if (inputPayMethod == 'e') {
+
+            try {
+                System.out.println("Enter Credit Card Number in format (XXXX-XXXX-XXXX-XXXX): ");
+                String cardNum = input.next();
+                
+                while (cardNum.length() < 19 || cardNum.length() > 19 || cardNum.charAt(4) != '-' || cardNum.charAt(9) != '-' || cardNum.charAt(14) != '-') {
+//                    if (cardNum.length() < 19 || cardNum.length() > 19 || cardNum.charAt(4) != '-' || cardNum.charAt(9) != '-' || cardNum.charAt(14) != '-') {
+                      
+//                    }
+                    System.out.println("\nNot Valid Credit Card Number. Follow Format: (XXXX-XXXX-XXXX-XXXX).");
+                    System.out.println("Enter Credit Card Number in format (XXXX-XXXX-XXXX-XXXX): ");
+                    cardNum = input.next();
+                }
+                pay.setCreditCardNumber(cardNum);
+
+                System.out.println("Enter the amount to be paid: ");
+                double balance = input.nextDouble();
+                if (balance < 0) {
+                    throw new NegativeNumberException();
+                }
+                pay.setBalance(balance);
+                pay.getBalance();
+                pay.getBillNumber();
+                pay.getCreditCardNumber();
+                pay.setLastName(newMember.getLastName());
+                pay.setFirstName(newMember.getFirstName());
+                pay.setAddress(newMember.getAddress());
+
+                System.out.println(pay.toString2());
+            } catch (NegativeNumberException nme) {
+                System.out.println("Cannot be a negative balance.");
+            }
         }
         return pay;
     }
     
-    public static void runProgram(){
-        employeeLogin();
-        addMember();
-    }
-    
-    public static String[] retrieveClient(Member m){
-        String[] clientInfo = {"\nClient's Last Name: " + m.getLastName(),"Client's First Name: " + m.getFirstName(),"Address: " + m.getAddress(), "Phone Number: " + m.getPhoneNumber()};
-        readArray(clientInfo);
-        
-        return clientInfo;
-    }
-    
     public static void readArray(String[] m){
+        System.out.println();
         for(String member : m){
             System.out.println(member);
         }
     }
     
-    public static ArrayList<Member> addMembersToList(Member m){
-        ArrayList<Member> members = new ArrayList<>();
-        
+    public static ArrayList<Member> addMembersToList(Member m, ArrayList<Member> members){
         members.add(m);
         
         return members;
     }
+    
+    public static ArrayList<Member> removeMembersFromList(Member m, ArrayList<Member> members){
+        members.remove(m);
+        
+        return members;
+    }
+    
+    public static Member changePhoneNum(Member m, String newPhoneNum){
+        m.setPhoneNumber(newPhoneNum);
+        
+        return m;
+    }
+    
+    public static Member changeAddress(Member m, String newAddress){
+        m.setAddress(newAddress);
+        
+        return m;
+    }
+    
+    public static void serializeMember(String[] clientInfo, String path){
+        try(FileOutputStream fos = new FileOutputStream(path)){
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(clientInfo);
+        }
+        catch(Exception e){
+            System.out.println(e.getClass() + ": Cannot serialize member to file.");
+        }
+    }
+    
+    public static String[] deserializeMember(String path){
+        Object obj= null;
+        try(FileInputStream fis = new FileInputStream(path)){
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            obj = ois.readObject();
+        }catch(Exception e){
+            System.out.println(e.getClass() + ": Cannot deserialize member from file.");
+        }
+        return (String[]) obj;
+    }
+    
 }

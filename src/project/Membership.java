@@ -56,8 +56,6 @@ public abstract class Membership extends Member{
     }
 
     public abstract void setMembershipCardNum();
-        
-    
 
     public abstract void setPrice();
 

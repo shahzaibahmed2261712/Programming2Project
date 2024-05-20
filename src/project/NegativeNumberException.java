@@ -8,14 +8,11 @@ package project;
  *
  * @author ahmed
  */
-public class NotValidCardNumber extends RuntimeException{
-
-    public NotValidCardNumber() {
-        super("The card number entered is not valid.");
+public class NegativeNumberException extends RuntimeException{
+    public NegativeNumberException() {
     }
 
-    public NotValidCardNumber(String message) {
+    public NegativeNumberException(String message) {
         super(message);
     }
-    
 }

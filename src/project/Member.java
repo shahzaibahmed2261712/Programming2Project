@@ -4,6 +4,7 @@
  */
 package project;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ import java.util.Scanner;
  *
  * @author ahmed
  */
-public class Member {
+public class Member implements Serializable{
     protected String firstName;
     protected String lastName;
     protected String address;
@@ -61,30 +62,16 @@ public class Member {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-        
-        for (int i = 0; i < phoneNumber.length(); i++) {
-            if (i != 3 && i != 7 && !Character.isDigit(phoneNumber.charAt(i))) {
-                System.out.println("Not Valid Format, Only Numbers");
 
-                Scanner input = new Scanner(System.in);
-                System.out.print("New Member phone number: ");
-                this.phoneNumber = input.nextLine();
-            }
+        while (this.phoneNumber.charAt(3) != '-' || this.phoneNumber.charAt(7) != '-') {
+            System.out.println("Not Valid Format, Missing '-' and ONLY Enter Numbers. Follow the format: (XXX-XXX-XXXX).");
+            Scanner input = new Scanner(System.in);
+            System.out.print("New Member phone number: ");
+            this.phoneNumber = input.nextLine();
         }
-
-        if (phoneNumber.charAt(3) != '-') {
-            System.out.println("Not Valid Format, Missing '-'");
-
-            Scanner input = new Scanner(System.in);
-            System.out.print("New Member phone number: ");
-            this.phoneNumber = input.nextLine();
-        } else if (phoneNumber.charAt(7) != '-') {
-            System.out.println("Not Valid Format, Missing '-'");
-            Scanner input = new Scanner(System.in);
-            System.out.print("New Member phone number: ");
-            this.phoneNumber = input.nextLine();
-        } else if (phoneNumber.length() != 12) {
-            System.out.println("Not Valid Format, Follow the format (XXX-XXX-XXXX)");
+        
+        while (this.phoneNumber.length() != 12 ) {
+            System.out.println("Not Valid Format, Follow the format (XXX-XXX-XXXX).");
             Scanner input = new Scanner(System.in);
             System.out.print("New Member phone number: ");
             this.phoneNumber = input.nextLine();

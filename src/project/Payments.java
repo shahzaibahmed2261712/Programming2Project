@@ -104,7 +104,7 @@ public class Payments extends Member{
     }
 
     public String toString2() {
-        return "Payment: " + "Bill Number: " + getBillNumber() + " | Member: " + getLastName() + ", " + getFirstName()
+        return "Credit Card Payment: " + "Bill Number: " + getBillNumber() + " | Member: " + getLastName() + ", " + getFirstName()
                 + " | Card ending with: " + getCreditCardNumber() + " | " + "Billing Address: " + getAddress() + " | Price paid: " + getBalance();
     }
 }
