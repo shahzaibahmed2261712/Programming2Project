@@ -68,7 +68,7 @@ public class Member {
 
                 Scanner input = new Scanner(System.in);
                 System.out.print("New Member phone number: ");
-                phoneNumber = input.nextLine();
+                this.phoneNumber = input.nextLine();
             }
         }
 
@@ -77,17 +77,17 @@ public class Member {
 
             Scanner input = new Scanner(System.in);
             System.out.print("New Member phone number: ");
-            phoneNumber = input.nextLine();
+            this.phoneNumber = input.nextLine();
         } else if (phoneNumber.charAt(7) != '-') {
             System.out.println("Not Valid Format, Missing '-'");
             Scanner input = new Scanner(System.in);
             System.out.print("New Member phone number: ");
-            phoneNumber = input.nextLine();
+            this.phoneNumber = input.nextLine();
         } else if (phoneNumber.length() != 12) {
             System.out.println("Not Valid Format, Follow the format (XXX-XXX-XXXX)");
             Scanner input = new Scanner(System.in);
             System.out.print("New Member phone number: ");
-            phoneNumber = input.nextLine();
+            this.phoneNumber = input.nextLine();
         }
     }
 
@@ -127,6 +127,6 @@ public class Member {
 
     @Override
     public String toString() {
-        return "Member: " + firstName + " " + lastName + " " + address + " " + phoneNumber;
+        return "Member: " + getLastName() + ", " + getFirstName() + " " + getAddress() + " " + getPhoneNumber();
     }
 }

@@ -10,10 +10,8 @@ import java.util.Objects;
  *
  * @author ahmed
  */
-public class Payments{
+public class Payments extends Member{
     private static int billNumber = 0;
-    protected double cashAmount;
-    protected double creditCardAmount;
     protected String creditCardNumber;
     protected double balance;
 
@@ -22,46 +20,48 @@ public class Payments{
         billNumber++;
     }
 
-    public Payments(double cashAmount, double creditCardAmount, String creditCardNumber, double balance) {
-        this.cashAmount = cashAmount;
-        this.creditCardAmount = creditCardAmount;
+    public Payments(String creditCardNumber, double balance, String firstName, String lastName, String address, String phoneNumber) {
+        super(firstName, lastName, address, phoneNumber);
         this.creditCardNumber = creditCardNumber;
         this.balance = balance;
     }
-
 
     public int getBillNumber() {
         return billNumber;
     }
 
-    public double getCashAmount() {
-        return cashAmount;
-    }
-
-    public double getCreditCardAmount() {
-        return creditCardAmount;
-    }
-
     public String getCreditCardNumber() {
-        return creditCardNumber;
+        return creditCardNumber.substring(15, creditCardNumber.length());
     }
 
     public double getBalance() {
         return balance;
     }
 
+    @Override
+    public String getFirstName() {
+        return firstName;
+    }
+
+    @Override
+    public String getLastName() {
+        return lastName;
+    }
+
+    @Override
+    public String getAddress() {
+        return address;
+    }
+
+    @Override
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
     public static void setBillNumber(int billNumber) {
         Payments.billNumber = billNumber;
     }
-
-    public void setCashAmount(double cashAmount) {
-        this.cashAmount = cashAmount;
-    }
-
-    public void setCreditCardAmount(double creditCardAmount) {
-        this.creditCardAmount = creditCardAmount;
-    }
-
+    
     public void setCreditCardNumber(String creditCardNumber) {
         this.creditCardNumber = creditCardNumber;
     }
@@ -72,11 +72,9 @@ public class Payments{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + (int) (Double.doubleToLongBits(this.cashAmount) ^ (Double.doubleToLongBits(this.cashAmount) >>> 32));
-        hash = 71 * hash + (int) (Double.doubleToLongBits(this.creditCardAmount) ^ (Double.doubleToLongBits(this.creditCardAmount) >>> 32));
-        hash = 71 * hash + Objects.hashCode(this.creditCardNumber);
-        hash = 71 * hash + (int) (Double.doubleToLongBits(this.balance) ^ (Double.doubleToLongBits(this.balance) >>> 32));
+        int hash = 5;
+        hash = 73 * hash + Objects.hashCode(this.creditCardNumber);
+        hash = 73 * hash + (int) (Double.doubleToLongBits(this.balance) ^ (Double.doubleToLongBits(this.balance) >>> 32));
         return hash;
     }
 
@@ -92,20 +90,21 @@ public class Payments{
             return false;
         }
         final Payments other = (Payments) obj;
-        if (Double.doubleToLongBits(this.cashAmount) != Double.doubleToLongBits(other.cashAmount)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.creditCardAmount) != Double.doubleToLongBits(other.creditCardAmount)) {
-            return false;
-        }
         if (Double.doubleToLongBits(this.balance) != Double.doubleToLongBits(other.balance)) {
             return false;
         }
         return Objects.equals(this.creditCardNumber, other.creditCardNumber);
     }
 
-    @Override
-    public String toString() {
-        return "Payments: " + getBillNumber();
+    
+
+    public String toString1() {
+        return "Cash Payment: " + "Bill Number: " + getBillNumber() + " | Member: " + super.getLastName() + ", " + getFirstName()
+                + " | " + "Billing Address: " + getAddress() + " | Price paid: " + getBalance();
+    }
+
+    public String toString2() {
+        return "Payment: " + "Bill Number: " + getBillNumber() + " | Member: " + getLastName() + ", " + getFirstName()
+                + " | Card ending with: " + getCreditCardNumber() + " | " + "Billing Address: " + getAddress() + " | Price paid: " + getBalance();
     }
 }

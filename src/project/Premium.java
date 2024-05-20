@@ -100,7 +100,8 @@ public class Premium extends Membership{
     @Override
     public String toString() {
         super.toString();
-        return "Member: " + getMembershipCardNum() + " " + getLastName() + ", " + getFirstName() + " " + getStatus() + " " + price;
+        return "Member: " + "Membership Card Number: " + getMembershipCardNum() + " | " + getLastName() + ", " + getFirstName() 
+                + " | Status: " + getStatus() + " | Price per Month: " + getPrice();
     }
     
 }
