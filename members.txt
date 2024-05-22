@@ -1,0 +1,3 @@
+Member: d, c | Address: e | Phone Number: 444-444-4444
+Member: Membership Card Number: 738017457 | d, c | Status: Premium Membership | Price per Month: 37.98
+Credit Card Payment: Bill Number: 1 | Member: d, c | Card ending with: 2457 | Billing Address: e | Price paid: 98.0

@@ -4,11 +4,15 @@
  */
 package project;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -22,6 +26,7 @@ public class Project {
      */
     public static void main(String[] args) {
         Member m1 = runProgram();
+        //Member m2 = runProgram();
     }
 
     public static Member runProgram() {
@@ -33,13 +38,22 @@ public class Project {
         
         //Member chooses membership then member gets stored in an array with their info.
         String[] clientInfo = client(m);
-        readArray(clientInfo);
+        
         
         //Serialzation
-        serializeMember(clientInfo,"C:\\Users\\ahmed\\OneDrive\\Documents\\NetBeansProjects\\Project\\random.ser");
-        String[] member = deserializeMember("C:\\Users\\ahmed\\OneDrive\\Documents\\NetBeansProjects\\Project\\random.ser");
+        serializeMember(clientInfo);
+        String[] member = deserializeMember("..\\Project\\random.ser");
+        System.out.println("\nDeserialized Member:");
         readArray(member);
         
+        
+        //Write to file & Read from file.
+        writeMemberToFile(clientInfo,"..\\Project\\members.txt");
+        System.out.println("Reading from file:");
+        System.out.println(readMemberFromFile("..\\Project\\members.txt"));
+        
+        
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
         return m;
     }
 
@@ -68,8 +82,6 @@ public class Project {
         m.setAddress(input.nextLine());
         System.out.print("New Member phone number: ");
         m.setPhoneNumber(input.nextLine());
-        
-        //chooseMembership(m);
         
         return m;
     }
@@ -152,9 +164,11 @@ public class Project {
             try {
                 System.out.println("Enter the amount to be paid: ");
                 double balance = input.nextDouble();
+
                 if (balance < 0) {
                     throw new NegativeNumberException();
                 }
+
                 pay.setBalance(balance);
                 pay.getBalance();
                 pay.getBillNumber();
@@ -165,6 +179,8 @@ public class Project {
                 System.out.println(pay.toString1());
             } catch (NegativeNumberException nme) {
                 System.out.println("Cannot be a negative balance.");
+            } catch (InputMismatchException ime) {
+                System.out.println("Only input numbers.");
             }
         } else if (inputPayMethod == 'e') {
 
@@ -173,18 +189,16 @@ public class Project {
                 String cardNum = input.next();
                 
                 while (cardNum.length() < 19 || cardNum.length() > 19 || cardNum.charAt(4) != '-' || cardNum.charAt(9) != '-' || cardNum.charAt(14) != '-') {
-//                    if (cardNum.length() < 19 || cardNum.length() > 19 || cardNum.charAt(4) != '-' || cardNum.charAt(9) != '-' || cardNum.charAt(14) != '-') {
-                      
-//                    }
                     System.out.println("\nNot Valid Credit Card Number. Follow Format: (XXXX-XXXX-XXXX-XXXX).");
                     System.out.println("Enter Credit Card Number in format (XXXX-XXXX-XXXX-XXXX): ");
                     cardNum = input.next();
                 }
                 pay.setCreditCardNumber(cardNum);
 
-                System.out.println("Enter the amount to be paid: ");
+                System.out.println("\nEnter the amount to be paid: ");
                 double balance = input.nextDouble();
-                if (balance < 0) {
+                
+                if (balance < 0  ) {
                     throw new NegativeNumberException();
                 }
                 pay.setBalance(balance);
@@ -198,6 +212,8 @@ public class Project {
                 System.out.println(pay.toString2());
             } catch (NegativeNumberException nme) {
                 System.out.println("Cannot be a negative balance.");
+            } catch (InputMismatchException ime){
+                System.out.println("Only input numbers.");
             }
         }
         return pay;
@@ -234,7 +250,8 @@ public class Project {
         return m;
     }
     
-    public static void serializeMember(String[] clientInfo, String path){
+    public static void serializeMember(String[] clientInfo){
+        String path = "..\\Project\\random.ser";
         try(FileOutputStream fos = new FileOutputStream(path)){
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(clientInfo);
@@ -255,4 +272,30 @@ public class Project {
         return (String[]) obj;
     }
     
+    public static void writeMemberToFile(String[] clientInfo,String path){
+        File file = new File(path);
+        
+        try(FileWriter fw = new FileWriter(file, true)){
+            for(String member : clientInfo){
+                fw.write(member + "\n");
+                System.out.println("\n");
+            }
+        }catch(IOException ioe){
+            System.out.println(ioe.getClass() + ": " + ioe.getMessage());
+        }
+    }
+    
+    public static String readMemberFromFile(String path) {
+        File file = new File(path);
+        String members = "";
+
+        try (Scanner input = new Scanner(file)) {
+            while (input.hasNext()) {
+                members += input.next() + " ";
+            }
+        } catch (IOException ioe) {
+            System.out.println("File " + path + " does not exist.");
+        }
+        return members;
+    }
 }
