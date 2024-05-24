@@ -123,7 +123,7 @@ public class Regular extends Membership{
     @Override
     public String toString() {
         return "Membership: " + "Membership Card Number: " + getMembershipCardNum() + " | " + getLastName() + ", " + getFirstName() 
-                + " | Status: " + getStatus() + " | Price per Month: " + getPrice();
+                + " | Status: " + getStatus() + " | Price per Month: $" + getPrice() + "--";
     }
     
 

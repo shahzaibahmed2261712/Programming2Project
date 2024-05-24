@@ -49,8 +49,8 @@ public class Project {
         
         //Write to file & Read from file.
         writeMemberToFile(clientInfo,"..\\Project\\members.txt");
-        System.out.println("Reading from file:");
-        System.out.println(readMemberFromFile("..\\Project\\members.txt"));
+        System.out.println("\nReading from file:");
+        readArray(readMemberFromFile("..\\Project\\members.txt"));
         
         
         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
@@ -89,6 +89,7 @@ public class Project {
     public static String[] client(Member m){
         String[] clientInfo = new String[0];
         Scanner input = new Scanner(System.in);
+        
         System.out.print("\nWhich Membership does the member want?\nRegular or Premium\nPress r for regular or p for premium: ");
         char inputMembership = input.next().charAt(0);
         System.out.println();
@@ -113,6 +114,7 @@ public class Project {
                 clientInfo = new String[]{m.toString(), p.toString(), pay.toString2()};
             }
         }
+        
         return clientInfo;
     }
     
@@ -278,24 +280,25 @@ public class Project {
         try(FileWriter fw = new FileWriter(file, true)){
             for(String member : clientInfo){
                 fw.write(member + "\n");
-                System.out.println("\n");
             }
         }catch(IOException ioe){
             System.out.println(ioe.getClass() + ": " + ioe.getMessage());
         }
     }
     
-    public static String readMemberFromFile(String path) {
+    public static String[] readMemberFromFile(String path) {
         File file = new File(path);
         String members = "";
+        String[] split = new String[0];
 
         try (Scanner input = new Scanner(file)) {
             while (input.hasNext()) {
                 members += input.next() + " ";
+                split = members.split("-- ");
             }
         } catch (IOException ioe) {
             System.out.println("File " + path + " does not exist.");
         }
-        return members;
+        return split;
     }
 }

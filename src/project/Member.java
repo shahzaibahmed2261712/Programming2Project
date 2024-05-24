@@ -107,6 +107,6 @@ public class Member implements Serializable{
 
     @Override
     public String toString() {
-        return "Member: " + getLastName() + ", " + getFirstName() + " | Address: " + getAddress() + " | Phone Number: " + getPhoneNumber();
+        return "Member: " + getLastName() + ", " + getFirstName() + " | Address: " + getAddress() + " | Phone Number: " + getPhoneNumber() + "--";
     }
 }

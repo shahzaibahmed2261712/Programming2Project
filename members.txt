@@ -1,3 +1,6 @@
-Member: d, c | Address: e | Phone Number: 444-444-4444
-Member: Membership Card Number: 738017457 | d, c | Status: Premium Membership | Price per Month: 37.98
-Credit Card Payment: Bill Number: 1 | Member: d, c | Card ending with: 2457 | Billing Address: e | Price paid: 98.0
+Member: Ahmed, Shahzaib | Address: Oslo | Phone Number: 438-526-2971--
+Membership: Membership Card Number: 524648962 | Ahmed, Shahzaib | Status: Regular Membership | Price per Month: 18.99--
+Cash Payment: Bill Number: 1 | Member: Ahmed, Shahzaib | Billing Address: Oslo | Price paid: 18.99--
+Member: d, c | Address: e | Phone Number: 443-323-4464--
+Membership: Membership Card Number: 502291169 | d, c | Status: Regular Membership | Price per Month: $18.99--
+Cash Payment: Bill Number: 1 | Member: d, c | Billing Address: e | Price paid: 19.0--

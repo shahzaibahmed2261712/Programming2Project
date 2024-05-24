@@ -100,11 +100,11 @@ public class Payments extends Member{
 
     public String toString1() {
         return "Cash Payment: " + "Bill Number: " + getBillNumber() + " | Member: " + super.getLastName() + ", " + getFirstName()
-                + " | " + "Billing Address: " + getAddress() + " | Price paid: " + getBalance();
+                + " | " + "Billing Address: " + getAddress() + " | Price paid: " + getBalance() + "--";
     }
 
     public String toString2() {
         return "Credit Card Payment: " + "Bill Number: " + getBillNumber() + " | Member: " + getLastName() + ", " + getFirstName()
-                + " | Card ending with: " + getCreditCardNumber() + " | " + "Billing Address: " + getAddress() + " | Price paid: " + getBalance();
+                + " | Card ending with: " + getCreditCardNumber() + " | " + "Billing Address: " + getAddress() + " | Price paid: $" + getBalance() + "--";
     }
 }
