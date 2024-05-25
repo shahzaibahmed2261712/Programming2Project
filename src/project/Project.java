@@ -86,42 +86,48 @@ public class Project {
         return m;
     }
     
-    public static String[] client(Member m){
+    public static String[] client(Member m) {
         String[] clientInfo = new String[0];
         Scanner input = new Scanner(System.in);
-        
-        System.out.print("\nWhich Membership does the member want?\nRegular or Premium\nPress r for regular or p for premium: ");
+
+        System.out.println("\nWhich Membership does the member want?\nRegular or Premium\nPress r for regular or p for premium: ");
         char inputMembership = input.next().charAt(0);
         System.out.println();
-        
-        if(inputMembership == 'r' || inputMembership == 'R'){
+
+        while (inputMembership != 'r' && inputMembership != 'R' && inputMembership != 'p' && inputMembership != 'P') {
+            System.out.println("Press r for regular or p for premium membership!");
+            inputMembership = input.next().charAt(0);
+            System.out.println();
+        }
+
+        if (inputMembership == 'r' || inputMembership == 'R') {
             Regular r = regularMembership(m);
             Payments pay = payment(m);
-            
-            if(pay.creditCardNumber == null)
+
+            if (pay.creditCardNumber == null) {
                 clientInfo = new String[]{m.toString(), r.toString(), pay.toString1()};
-            else if(pay.creditCardNumber != null){
+            } else if (pay.creditCardNumber != null) {
                 clientInfo = new String[]{m.toString(), r.toString(), pay.toString2()};
             }
-        }
-        else if (inputMembership == 'p' || inputMembership == 'P'){
+        } else if (inputMembership == 'p' || inputMembership == 'P') {
             Premium p = premiumMembership(m);
             Payments pay = payment(m);
-            
-            if(pay.creditCardNumber == null)
+
+            if (pay.creditCardNumber == null) {
                 clientInfo = new String[]{m.toString(), p.toString(), pay.toString1()};
-            else if(pay.creditCardNumber != null){
+            } else if (pay.creditCardNumber != null) {
                 clientInfo = new String[]{m.toString(), p.toString(), pay.toString2()};
             }
         }
-        
         return clientInfo;
     }
-    
+
     public static Regular regularMembership(Member newMember) {
         Regular r = new Regular();
+        
+        
+        System.out.println("Your Regular Membership Includes:");
         r.setMembershipCardNum();
-        System.out.println(r.getMembershipCardNum());
         r.setUnlimitedAccess(true);
         r.setAccessToLockers(true);
         r.setaFreeGymShirt(true);
@@ -130,8 +136,6 @@ public class Project {
         r.setStatus();
         r.setPrice();
         System.out.println(r);
-        
-        //payment(newMember);
 
         return r;
     }
@@ -139,6 +143,7 @@ public class Project {
     public static Premium premiumMembership(Member newMember) {
         Premium p = new Premium();
 
+        System.out.println("Your Premium Membership Includes:");
         p.setMembershipCardNum();
         p.setAnyLocationAccess(true);
         p.setAccessToSpa(true);
@@ -148,8 +153,6 @@ public class Project {
         p.setStatus();
         p.setPrice();
         System.out.println(p);
-        
-        //payment(newMember);
         
         return p;
     }
@@ -161,12 +164,19 @@ public class Project {
         System.out.println("\nWhich payment method to pay? Cash or Credit Card?\nPress c for Cash and e for Credit Card.");
         char inputPayMethod = input.next().charAt(0);
         System.out.println();
+        
+        while(inputPayMethod != 'c' && inputPayMethod != 'C' && inputPayMethod != 'e' && inputPayMethod != 'E') {
+            System.out.println("Press c to pay with cash or e to pay with a credit card!");
+            inputPayMethod = input.next().charAt(0);
+            System.out.println();
+        }
 
-        if (inputPayMethod == 'c') {
+        if (inputPayMethod == 'c' || inputPayMethod == 'C') {
+            
             try {
                 System.out.println("Enter the amount to be paid: ");
-                double balance = input.nextDouble();
-
+                Double balance = input.nextDouble();
+                
                 if (balance < 0) {
                     throw new NegativeNumberException();
                 }
@@ -184,8 +194,9 @@ public class Project {
             } catch (InputMismatchException ime) {
                 System.out.println("Only input numbers.");
             }
-        } else if (inputPayMethod == 'e') {
-
+            
+        } else if (inputPayMethod == 'e' || inputPayMethod == 'E') {
+            
             try {
                 System.out.println("Enter Credit Card Number in format (XXXX-XXXX-XXXX-XXXX): ");
                 String cardNum = input.next();
