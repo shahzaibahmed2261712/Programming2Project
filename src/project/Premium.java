@@ -9,9 +9,9 @@ package project;
  * @author ahmed
  */
 public class Premium extends Membership{
-    private boolean anyLocationAccess;
-    private boolean twentyfivePercentDiscountOnFood;
-    private boolean accessToSpa;
+    private final boolean anyLocationAccess;
+    private final boolean twentyfivePercentDiscountOnFood;
+    private final boolean accessToSpa;
     protected double price;
 
     public Premium() {

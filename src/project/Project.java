@@ -29,12 +29,16 @@ public class Project {
         //Member m2 = runProgram();
     }
 
+    /**
+     * It runs the program to register a new member. Then serializes the member and
+     * stores member in a file.
+     * @return 
+     */
     public static Member runProgram() {
-        ArrayList<Member> members = new ArrayList<>();
         
         employeeLogin();
         Member m = addMember();
-        addMembersToList(m, members);
+        addMembersToList(m);
         
         //Member chooses membership then member gets stored in an array with their info.
         String[] clientInfo = client(m);
@@ -57,6 +61,10 @@ public class Project {
         return m;
     }
 
+    /**
+     * Employee Login
+     * @return 
+     */
     public static Employee employeeLogin(){
         Employee ep = new Employee();
         Scanner input = new Scanner(System.in);
@@ -70,6 +78,10 @@ public class Project {
         return ep;
     }
     
+    /**
+     * Adds new member to the gym registration system.
+     * @return 
+     */
     public static Member addMember() {
         Member m = new Member();
         
@@ -86,6 +98,14 @@ public class Project {
         return m;
     }
     
+    /**
+     * Takes in the member and asks user to input which membership the client wants.
+     * Based on which membership the user has chosen, it invokes the appropriate membership class.
+     * Then the payment class is called to set the bill for the client.
+     * The method returns an array of string that includes the toString of member, membership and payment.
+     * @param m
+     * @return 
+     */
     public static String[] client(Member m) {
         String[] clientInfo = new String[0];
         Scanner input = new Scanner(System.in);
@@ -157,6 +177,12 @@ public class Project {
         return p;
     }
     
+    /**
+     * This method asks the user to input which payment method they want to pay with.
+     * Then it returns the payment class with billing info with 4 last digit of credit card if payed with credit card.
+     * @param newMember
+     * @return 
+     */
     public static Payments payment(Member newMember) {
         Scanner input = new Scanner(System.in);
         Payments pay = new Payments();
@@ -239,16 +265,18 @@ public class Project {
         }
     }
     
-    public static ArrayList<Member> addMembersToList(Member m, ArrayList<Member> members){
-        members.add(m);
+    public static ArrayList<Member> addMembersToList(Member m){
+        ArrayList member = new ArrayList<>();
+        member.add(m);
         
-        return members;
+        return member;
     }
     
-    public static ArrayList<Member> removeMembersFromList(Member m, ArrayList<Member> members){
-        members.remove(m);
+    public static ArrayList<Member> removeMembersFromList(Member m){
+        ArrayList member = new ArrayList<>();
+        member.remove(m);
         
-        return members;
+        return member;
     }
     
     public static Member changePhoneNum(Member m, String newPhoneNum){
@@ -263,6 +291,10 @@ public class Project {
         return m;
     }
     
+    /**
+     * This method serializes the new member.
+     * @param clientInfo 
+     */
     public static void serializeMember(String[] clientInfo){
         String path = "..\\Project\\random.ser";
         try(FileOutputStream fos = new FileOutputStream(path)){
@@ -274,6 +306,11 @@ public class Project {
         }
     }
     
+    /**
+     * This method deserializes the member.
+     * @param path
+     * @return 
+     */
     public static String[] deserializeMember(String path){
         Object obj= null;
         try(FileInputStream fis = new FileInputStream(path)){
@@ -285,6 +322,11 @@ public class Project {
         return (String[]) obj;
     }
     
+    /**
+     * A member is written to a file to store their info with personal info, membership info and payment info.
+     * @param clientInfo
+     * @param path 
+     */
     public static void writeMemberToFile(String[] clientInfo,String path){
         File file = new File(path);
         
@@ -296,6 +338,12 @@ public class Project {
             System.out.println(ioe.getClass() + ": " + ioe.getMessage());
         }
     }
+    
+    /**
+     * Here, the registered members are retrieved from a file.
+     * @param path
+     * @return 
+     */
     
     public static String[] readMemberFromFile(String path) {
         File file = new File(path);

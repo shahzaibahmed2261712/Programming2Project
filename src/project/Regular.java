@@ -9,9 +9,9 @@ package project;
  * @author ahmed
  */
 public class Regular extends Membership{
-    private boolean unlimitedAccess;
-    private boolean aFreeGymShirt;
-    private boolean accessToLockers;
+    private final boolean unlimitedAccess;
+    private final boolean aFreeGymShirt;
+    private final boolean accessToLockers;
     protected double price;
 
     public Regular() {
@@ -22,7 +22,7 @@ public class Regular extends Membership{
         price = 0.0;
     }
 
-    public Regular(boolean unlimitedAccess, boolean aFreeGymShirt, boolean accessToLockers, double price, int membershipCardNum,String status, String firstName, String lastName, String address, String phoneNumber) {
+    public Regular(boolean unlimitedAccess, boolean aFreeGymShirt, boolean accessToLockers, double price, int membershipCardNum, String status, String firstName, String lastName, String address, String phoneNumber) {
         super(membershipCardNum, status, firstName, lastName, address, phoneNumber);
         this.unlimitedAccess = unlimitedAccess;
         this.aFreeGymShirt = aFreeGymShirt;
