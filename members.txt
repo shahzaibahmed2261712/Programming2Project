@@ -2,44 +2,26 @@ Member: Ahmed, Shahzaib | Address: Oslo | Phone Number: 438-526-2971--
 Membership: Membership Card Number: 524648962 | Ahmed, Shahzaib | Status: Regular Membership | Price per Month: 18.99--
 Cash Payment: Bill Number: 1 | Member: Ahmed, Shahzaib | Billing Address: Oslo | Price paid: 18.99--
 Member: d, c | Address: e | Phone Number: 111-111-1111--
-Membership: Membership Card Number: 548852837 | d, c | Status: Regular Membership | Price per Month: $18.99--
-Cash Payment: Bill Number: 1 | Member: null, null | Billing Address: null | Price paid: 0.0--
-Member: d, c | Address: e | Phone Number: 111-111-1111--
-Membership: Membership Card Number: 544482889 | d, c | Status: Regular Membership | Price per Month: $18.99--
+Membership: Membership Card Number: 474188725 | d, c | Status: Regular Membership | Price per Month: $18.99--
 Cash Payment: Bill Number: 1 | Member: d, c | Billing Address: e | Price paid: 20.0--
+Member: d, c | Address: e | Phone Number: 123-456-4432--
+Membership: Membership Card Number: 475051395 | d, c | Status: Regular Membership | Price per Month: $18.99--
+Credit Card Payment: Bill Number: 1 | Member: d, c | Card ending with: 7654 | Billing Address: e | Price paid: $20.0--
+Member: hrtydh, agrth | Address: ehbthey | Phone Number: 123-567-8753--
+Membership: Membership Card Number: 644728346 | hrtydh, agrth | Status: Premium Membership | Price per Month: $37.98--
+Cash Payment: Bill Number: 1 | Member: hrtydh, agrth | Billing Address: ehbthey | Price paid: 40.0--
 Member: d, c | Address: e | Phone Number: 111-111-1111--
-Membership: Membership Card Number: 487463437 | d, c | Status: Regular Membership | Price per Month: $18.99--
-Cash Payment: Bill Number: 1 | Member: d, c | Billing Address: e | Price paid: 20.0--
-Member: d, c | Address: e | Phone Number: 111-111-1111--
-Membership: Membership Card Number: 531880438 | d, c | Status: Regular Membership | Price per Month: $18.99--
-Credit Card Payment: Bill Number: 1 | Member: d, c | Card ending with: 4321 | Billing Address: e | Price paid: $40.0--
-Member: d, c | Address: e | Phone Number: 111-111-1111--
-Membership: Membership Card Number: 718062659 | d, c | Status: Premium Membership | Price per Month: $37.98--
-Cash Payment: Bill Number: 1 | Member: d, c | Billing Address: e | Price paid: 40.0--
-Member: d, c | Address: e | Phone Number: 111-111-1111--
-Membership: Membership Card Number: 726714849 | d, c | Status: Premium Membership | Price per Month: $37.98--
-Credit Card Payment: Bill Number: 1 | Member: d, c | Card ending with: 0274 | Billing Address: e | Price paid: $43.0--
-Member: d, c | Address: e | Phone Number: 111-111-1111--
-Membership: Membership Card Number: 479637993 | d, c | Status: Regular Membership | Price per Month: $18.99--
-Credit Card Payment: Bill Number: 1 | Member: d, c | Card ending with: 0873 | Billing Address: e | Price paid: $40.0--
-Member: d, c | Address: e | Phone Number: 111-111-1111--
-Membership: Membership Card Number: 643375182 | d, c | Status: Premium Membership | Price per Month: $37.98--
-Cash Payment: Bill Number: 1 | Member: d, c | Billing Address: e | Price paid: 20.0--
-Member: d, c | Address: e | Phone Number: 111-111-1111--
-Membership: Membership Card Number: 507573025 | d, c | Status: Regular Membership | Price per Month: $18.99--
-Cash Payment: Bill Number: 1 | Member: d, c | Billing Address: e | Price paid: 18.99--
-Member: d, c | Address: e | Phone Number: 111-111-1111--
-Membership: Membership Card Number: 465758040 | d, c | Status: Regular Membership | Price per Month: $18.99--
-Cash Payment: Bill Number: 1 | Member: d, c | Billing Address: e | Price paid: 18.99--
-Member: d, c | Address: e | Phone Number: 111-111-1111--
-Membership: Membership Card Number: 472359520 | d, c | Status: Regular Membership | Price per Month: $18.99--
-Cash Payment: Bill Number: 1 | Member: d, c | Billing Address: e | Price paid: 10.0--
-Member: d, c | Address: e | Phone Number: 111-111-1111--
-Membership: Membership Card Number: 718978574 | d, c | Status: Premium Membership | Price per Month: $37.98--
-Credit Card Payment: Bill Number: 1 | Member: d, c | Card ending with: 7531 | Billing Address: e | Price paid: $20.0--
-Member: d, c | Address: e | Phone Number: 111-111-1111--
-Membership: Membership Card Number: 467580936 | d, c | Status: Regular Membership | Price per Month: $18.99--
-Cash Payment: Bill Number: 1 | Member: d, c | Billing Address: e | Price paid: 20.0--
-Member: d, c | Address: e | Phone Number: 111-234-5678--
-Membership: Membership Card Number: 536258136 | d, c | Status: Regular Membership | Price per Month: $18.99--
-Cash Payment: Bill Number: 1 | Member: d, c | Billing Address: e | Price paid: 20.0--
+Membership: Membership Card Number: 440960263 | d, c | Status: Regular Membership | Price per Month: $18.99--
+Cash Payment: Bill Number: 1 | Member: d, c | Billing Address: e | Price paid: $20.0--
+Member: b, a | Address: e | Phone Number: 111-111-1111--
+Membership: Membership Card Number: 521906118 | b, a | Status: Regular Membership | Price per Month: $18.99--
+Credit Card Payment: Bill Number: 1 | Member: b, a | Card ending with: 7655 | Billing Address: e | Price paid: $40.0--
+Member: b, a | Address: e | Phone Number: 111-111-1111--
+Membership: Membership Card Number: 689456040 | b, a | Status: Premium Membership | Price per Month: $37.98--
+Cash Payment: Bill Number: 1 | Member: b, a | Billing Address: e | Price paid: $48.0--
+Member: bhsergs, htyhty | Address: hbtrdbrd | Phone Number: 111-111-1111--
+Membership: Membership Card Number: 746520633 | bhsergs, htyhty | Status: Premium Membership | Price per Month: $37.98--
+Credit Card Payment: Bill Number: 1 | Member: bhsergs, htyhty | Card ending with: 5664 | Billing Address: hbtrdbrd | Price paid: $40.0--
+Member: b, a | Address: e | Phone Number: 111-111-1111--
+Membership: Membership Card Number: 532175162 | b, a | Status: Regular Membership | Price per Month: $18.99--
+Credit Card Payment: Bill Number: 1 | Member: b, a | Card ending with: 5434 | Billing Address: e | Price paid: $40.0--

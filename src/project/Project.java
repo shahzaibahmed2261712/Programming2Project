@@ -26,7 +26,9 @@ public class Project {
      */
     public static void main(String[] args) {
         Member m1 = runProgram();
-        //Member m2 = runProgram();
+        
+        
+        
     }
 
     /**
@@ -35,9 +37,9 @@ public class Project {
      * @return 
      */
     public static Member runProgram() {
-        
         employeeLogin();
         Member m = addMember();
+        
         addMembersToList(m);
         
         //Member chooses membership then member gets stored in an array with their info.
@@ -101,7 +103,7 @@ public class Project {
     /**
      * Takes in the member and asks user to input which membership the client wants.
      * Based on which membership the user has chosen, it invokes the appropriate membership class.
-     * Then the payment class is called to set the bill for the client.
+     * Then the payment class is called to set the bill for the client. 
      * The method returns an array of string that includes the toString of member, membership and payment.
      * @param m
      * @return 
@@ -144,7 +146,6 @@ public class Project {
 
     public static Regular regularMembership(Member newMember) {
         Regular r = new Regular();
-        
         
         System.out.println("Your Regular Membership Includes:");
         r.setMembershipCardNum();
@@ -258,39 +259,6 @@ public class Project {
         return pay;
     }
     
-    public static void readArray(String[] m){
-        System.out.println();
-        for(String member : m){
-            System.out.println(member);
-        }
-    }
-    
-    public static ArrayList<Member> addMembersToList(Member m){
-        ArrayList member = new ArrayList<>();
-        member.add(m);
-        
-        return member;
-    }
-    
-    public static ArrayList<Member> removeMembersFromList(Member m){
-        ArrayList member = new ArrayList<>();
-        member.remove(m);
-        
-        return member;
-    }
-    
-    public static Member changePhoneNum(Member m, String newPhoneNum){
-        m.setPhoneNumber(newPhoneNum);
-        
-        return m;
-    }
-    
-    public static Member changeAddress(Member m, String newAddress){
-        m.setAddress(newAddress);
-        
-        return m;
-    }
-    
     /**
      * This method serializes the new member.
      * @param clientInfo 
@@ -359,5 +327,38 @@ public class Project {
             System.out.println("File " + path + " does not exist.");
         }
         return split;
+    }
+    
+    public static void readArray(String[] m){
+        System.out.println();
+        for(String member : m){
+            System.out.println(member);
+        }
+    }
+    
+    public static ArrayList<Member> addMembersToList(Member m){
+        ArrayList member = new ArrayList<>();
+        member.add(m);
+        
+        return member;
+    }
+    
+    public static ArrayList<Member> removeMembersFromList(Member m){
+        ArrayList member = new ArrayList<>();
+        member.remove(m);
+        
+        return member;
+    }
+    
+    public static Member changePhoneNum(Member m, String newPhoneNum){
+        m.setPhoneNumber(newPhoneNum);
+        
+        return m;
+    }
+    
+    public static Member changeAddress(Member m, String newAddress){
+        m.setAddress(newAddress);
+        
+        return m;
     }
 }

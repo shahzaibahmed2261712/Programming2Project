@@ -100,7 +100,7 @@ public class Payments extends Member{
 
     public String toString1() {
         return "Cash Payment: " + "Bill Number: " + getBillNumber() + " | Member: " + super.getLastName() + ", " + getFirstName()
-                + " | " + "Billing Address: " + getAddress() + " | Price paid: " + getBalance() + "--";
+                + " | " + "Billing Address: " + getAddress() + " | Price paid: $" + getBalance() + "--";
     }
 
     public String toString2() {
